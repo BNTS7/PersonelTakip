@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bürotime | </title>
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Content/css/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/Content/css/custom.min.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Content/css/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="~/Content/css/bootstrap-datetimepicker.css" rel="stylesheet">
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="Home/Index" class="site_title"><img src="~/Content/img/buro.png"> </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-home"></i> Ana Sayfa <span class="fa fa-chevron-down"></span></a>
+
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-users"></i> Personel <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+
+
+                                        <li>@Html.ActionLink("Tüm Personel Listesi", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Personel Ekle", "Create", "Personel")</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-building"></i> Departman <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <li>@Html.ActionLink("Tüm Departman Listesi", "Index", "Department")</li>
+                                        <li>@Html.ActionLink("Departman Ekle", "Create", "Department")</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-clock-o"></i> Hareketler <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>@Html.ActionLink("Hareket Ekle", "Create", "Hareketler")</li>
+                                        <li>@Html.ActionLink("Giriş Çıkış İşlemleri", "Index", "Hareketler")</li>
+                                        <li>@Html.ActionLink("Mesai İşlemleri", "Index", "Hareketler")</li>
+                                        <li>@Html.ActionLink("Vardiya İşlemleri", "Index", "Hareketler")</li>
+
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-suitcase"></i> İzinler <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>@Html.ActionLink("Ücretli İzinler", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Ücretsiz İzinler", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Yıllık İzinler", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Diğer", "Index", "Personel")</li>
+                                    </ul>
+
+                                <li>
+                                    <a><i class="fa  fa-plus-circle"></i> Puantaj <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li>@Html.ActionLink("Günlük Puantaj", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Aylık Puantaj", "Index", "Personel")</li>
+                                        <li>@Html.ActionLink("Yıllık Puantaj", "Index", "Personel")</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-bar-chart"></i> Raporlar <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <li>@Html.ActionLink("Standart Raporlar", "Index", "Raporlar")</li>
+                                        <li>@Html.ActionLink("Hareket Raporları", "Index", "Hareketler")</li>
+                                        <li>@Html.ActionLink("İzin Raporları", "Index", "Hareketler")</li>
+                                        <li>@Html.ActionLink("Puantaj Raporları", "Index", "Hareketler")</li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Admin @Session["Name"]
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>@Html.ActionLink("Çıkış", "Index", "Login")</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>Bürotime Personel Takip Sistemi</h3>
+                        </div>
+                        <div class="title_right">
+                            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Ara...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Git!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+    <!-- footer content -->
+    <footer>
+        <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+    <!-- jQuery -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Content/js/nprogress.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Content/js/custom.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Content/js/buttons.flash.min.js"></script>
+    <script src="~/Content/js/buttons.html5.min.js"></script>
+    <script src="~/Content/js/buttons.print.min.js"></script>
+    <!-- ECharts -->
+    <script src="~/Content/js/Chart.min.js"></script>
+    <script src="~/Content/js/echarts.min.js"></script>
+    <script src="~/Content/js/world.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Content/js/moment.min.js"></script>
+    <script src="~/Content/js/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    <script src="~/Content/js/bootstrap-datetimepicker.min.js"></script>
+    @*<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="../vendors/jszip/dist/jszip.min.js"></script>
+        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>*@
+    <script>
+        $('#myDatepicker').datetimepicker();
+
+        $('#myDatepicker2').datetimepicker({
+            format: 'DD-MM-YYYY'
+        });
+
+        $('#myDatepicker3').datetimepicker({
+            format: 'hh:mm'
+        });
+
+        $('#myDatepicker4').datetimepicker({
+            ignoreReadonly: true,
+            allowInputToggle: true
+        });
+
+        $('#datetimepicker6').datetimepicker();
+
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false
+        });
+
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    </script>
+</body>
+</html>

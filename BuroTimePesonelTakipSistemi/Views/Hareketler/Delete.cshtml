@@ -1,0 +1,101 @@
+﻿@model BuroTimePesonelTakipSistemi.Models.Action_tbl
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Bu Kaydı Silmek İstediğinize Emin misiniz?</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left input_mask">
+                        <div class="form-group  col-xs-offset-7">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Sicil No</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Personel_tbl.Sicil_No)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Adı</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Personel_tbl.Name)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Soyadı</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Personel_tbl.Surname)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Giriş Saati</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Checkin_Time)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Çıkış Saati</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Checkout_Time)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Mesai</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Shift)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Kadro</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder=" @Html.DisplayFor(model => model.Cadre)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Açıklama</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" readonly="readonly" placeholder="@Html.DisplayFor(model => model.Description)">
+                            </div>
+                        </div>
+                    </form>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="form-group  col-xs-offset-7">
+                            <input type="submit" value="Sil" class="btn btn-danger" />
+                            <button type="button" class="btn btn-info">@Html.ActionLink("Geri Dön", "Index")</button>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

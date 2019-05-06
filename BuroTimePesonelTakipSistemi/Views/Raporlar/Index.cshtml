@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BuroTimePesonelTakipSistemi.Models.Reports_tbl>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+
+    <div class="x_panel">
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content" style="display: block;">
+            <canvas id="chart" widh="300" height="200"></canvas>
+            <script>
+                var chart = document.getElementById("chart").getContext('2d');
+                var myChart = new Chart(chart, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                        datasets: [{
+                            label: "Giriş Saati",
+                            data: [08.30, 09.00, 10.00, 11.00, 12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00],
+                            backgroundColor: ['#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54', '#2A3F54'],
+
+                        },
+                        {
+
+                            label: "Çıkış Saati",
+                            data: [09.00, 10.00, 11.00, 12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00, 21.00],
+                            backgroundColor: ['#1ABB9C', '#1ABB9C', '#1ABB9C', '#1ABB9C', '#1ABB9C', '#1ABB9C']
+                        }
+                        ]
+                    },
+                });
+
+            </script>
+        </div>
+    </div>
+
+
+</body>
+</html>

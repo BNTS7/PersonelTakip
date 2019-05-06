@@ -1,0 +1,92 @@
+﻿@model BuroTimePesonelTakipSistemi.Models.Personel_tbl
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Yeni Personel</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                         
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form class="form-horizontal form-label-left input_mask">
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control has-feedback-left", @id = "inputSuccess1", @placeholder = "Adı" } })
+                                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @id = "inputSuccess2", @placeholder = "Soyadı" } })
+                                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                @Html.EditorFor(model => model.Sicil_No, new { htmlAttributes = new { @class = "form-control has-feedback-left", @id = "inputSuccess3", @placeholder = "Sicil No" } })
+                                <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @id = "inputSuccess4", @placeholder = "Telefon" } })
+                                <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-6 col-xs-12">Pozisyon</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Kadro</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.Staff, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Adres</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Departman</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    @Html.DropDownList("D_Id", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div class="form-group  col-xs-offset-7">
+                                 <input type="submit" value="Kaydet" class="btn btn-success" />
+                                 <button type="button" class="btn btn-info">@Html.ActionLink("Geri Dön", "Index")</button>
+                                   
+                            </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

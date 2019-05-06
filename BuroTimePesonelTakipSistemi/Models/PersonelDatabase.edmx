@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PersonelDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Action_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Id" Type="int" />
+          <Property Name="Checkin_Time" Type="datetime" />
+          <Property Name="Checkout_Time" Type="datetime" />
+          <Property Name="Shift" Type="varchar" MaxLength="50" />
+          <Property Name="Job_Rotation" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Cadre" Type="varchar" MaxLength="50" />
+          <Property Name="Dater" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Admin_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Id" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Department_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Personel_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sicil_No" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="D_Id" Type="int" />
+          <Property Name="Position" Type="varchar" MaxLength="50" />
+          <Property Name="Staff" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+          <Property Name="Phone" Type="int" />
+        </EntityType>
+        <EntityType Name="Reports_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Id" Type="int" />
+          <Property Name="A_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Action_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Action_tbl" Type="Self.Action_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Action_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Admin_tbl" Type="Self.Admin_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Admin_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_tbl_Department_tbl">
+          <End Role="Department_tbl" Type="Self.Department_tbl" Multiplicity="0..1" />
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personel_tbl">
+              <PropertyRef Name="D_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_tbl_Action_tbl">
+          <End Role="Action_tbl" Type="Self.Action_tbl" Multiplicity="0..1" />
+          <End Role="Reports_tbl" Type="Self.Reports_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reports_tbl">
+              <PropertyRef Name="A_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Reports_tbl" Type="Self.Reports_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reports_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PersonelDBModel1StoreContainer">
+          <EntitySet Name="Action_tbl" EntityType="Self.Action_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin_tbl" EntityType="Self.Admin_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department_tbl" EntityType="Self.Department_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel_tbl" EntityType="Self.Personel_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports_tbl" EntityType="Self.Reports_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Action_tbl_Personel_tbl" Association="Self.FK_Action_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Action_tbl" EntitySet="Action_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_tbl_Personel_tbl" Association="Self.FK_Admin_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Admin_tbl" EntitySet="Admin_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_tbl_Department_tbl" Association="Self.FK_Personel_tbl_Department_tbl">
+            <End Role="Department_tbl" EntitySet="Department_tbl" />
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_tbl_Action_tbl" Association="Self.FK_Reports_tbl_Action_tbl">
+            <End Role="Action_tbl" EntitySet="Action_tbl" />
+            <End Role="Reports_tbl" EntitySet="Reports_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_tbl_Personel_tbl" Association="Self.FK_Reports_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Reports_tbl" EntitySet="Reports_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PersonelDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Action_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Id" Type="Int32" />
+          <Property Name="Checkin_Time" Type="DateTime" Precision="3" />
+          <Property Name="Checkout_Time" Type="DateTime" Precision="3" />
+          <Property Name="Shift" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Job_Rotation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cadre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dater" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Personel_tbl" Relationship="Self.FK_Action_tbl_Personel_tbl" FromRole="Action_tbl" ToRole="Personel_tbl" />
+          <NavigationProperty Name="Reports_tbl" Relationship="Self.FK_Reports_tbl_Action_tbl" FromRole="Action_tbl" ToRole="Reports_tbl" />
+        </EntityType>
+        <EntityType Name="Admin_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Id" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personel_tbl" Relationship="Self.FK_Admin_tbl_Personel_tbl" FromRole="Admin_tbl" ToRole="Personel_tbl" />
+        </EntityType>
+        <EntityType Name="Department_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personel_tbl" Relationship="Self.FK_Personel_tbl_Department_tbl" FromRole="Department_tbl" ToRole="Personel_tbl" />
+        </EntityType>
+        <EntityType Name="Personel_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sicil_No" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_Id" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Staff" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Int32" />
+          <NavigationProperty Name="Action_tbl" Relationship="Self.FK_Action_tbl_Personel_tbl" FromRole="Personel_tbl" ToRole="Action_tbl" />
+          <NavigationProperty Name="Admin_tbl" Relationship="Self.FK_Admin_tbl_Personel_tbl" FromRole="Personel_tbl" ToRole="Admin_tbl" />
+          <NavigationProperty Name="Department_tbl" Relationship="Self.FK_Personel_tbl_Department_tbl" FromRole="Personel_tbl" ToRole="Department_tbl" />
+          <NavigationProperty Name="Reports_tbl" Relationship="Self.FK_Reports_tbl_Personel_tbl" FromRole="Personel_tbl" ToRole="Reports_tbl" />
+        </EntityType>
+        <EntityType Name="Reports_tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Id" Type="Int32" />
+          <Property Name="A_Id" Type="Int32" />
+          <NavigationProperty Name="Action_tbl" Relationship="Self.FK_Reports_tbl_Action_tbl" FromRole="Reports_tbl" ToRole="Action_tbl" />
+          <NavigationProperty Name="Personel_tbl" Relationship="Self.FK_Reports_tbl_Personel_tbl" FromRole="Reports_tbl" ToRole="Personel_tbl" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Action_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Action_tbl" Type="Self.Action_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Action_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_tbl_Action_tbl">
+          <End Role="Action_tbl" Type="Self.Action_tbl" Multiplicity="0..1" />
+          <End Role="Reports_tbl" Type="Self.Reports_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reports_tbl">
+              <PropertyRef Name="A_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Admin_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Admin_tbl" Type="Self.Admin_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Admin_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personel_tbl_Department_tbl">
+          <End Role="Department_tbl" Type="Self.Department_tbl" Multiplicity="0..1" />
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personel_tbl">
+              <PropertyRef Name="D_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_tbl_Personel_tbl">
+          <End Role="Personel_tbl" Type="Self.Personel_tbl" Multiplicity="0..1" />
+          <End Role="Reports_tbl" Type="Self.Reports_tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel_tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reports_tbl">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Action_tbl" EntityType="Self.Action_tbl" />
+          <EntitySet Name="Admin_tbl" EntityType="Self.Admin_tbl" />
+          <EntitySet Name="Department_tbl" EntityType="Self.Department_tbl" />
+          <EntitySet Name="Personel_tbl" EntityType="Self.Personel_tbl" />
+          <EntitySet Name="Reports_tbl" EntityType="Self.Reports_tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Action_tbl_Personel_tbl" Association="Self.FK_Action_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Action_tbl" EntitySet="Action_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_tbl_Action_tbl" Association="Self.FK_Reports_tbl_Action_tbl">
+            <End Role="Action_tbl" EntitySet="Action_tbl" />
+            <End Role="Reports_tbl" EntitySet="Reports_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Admin_tbl_Personel_tbl" Association="Self.FK_Admin_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Admin_tbl" EntitySet="Admin_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personel_tbl_Department_tbl" Association="Self.FK_Personel_tbl_Department_tbl">
+            <End Role="Department_tbl" EntitySet="Department_tbl" />
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_tbl_Personel_tbl" Association="Self.FK_Reports_tbl_Personel_tbl">
+            <End Role="Personel_tbl" EntitySet="Personel_tbl" />
+            <End Role="Reports_tbl" EntitySet="Reports_tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PersonelDBModel1StoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Action_tbl">
+            <EntityTypeMapping TypeName="PersonelDBModel1.Action_tbl">
+              <MappingFragment StoreEntitySet="Action_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="Checkin_Time" ColumnName="Checkin_Time" />
+                <ScalarProperty Name="Checkout_Time" ColumnName="Checkout_Time" />
+                <ScalarProperty Name="Shift" ColumnName="Shift" />
+                <ScalarProperty Name="Job_Rotation" ColumnName="Job_Rotation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cadre" ColumnName="Cadre" />
+                <ScalarProperty Name="Dater" ColumnName="Dater" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admin_tbl">
+            <EntityTypeMapping TypeName="PersonelDBModel1.Admin_tbl">
+              <MappingFragment StoreEntitySet="Admin_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department_tbl">
+            <EntityTypeMapping TypeName="PersonelDBModel1.Department_tbl">
+              <MappingFragment StoreEntitySet="Department_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel_tbl">
+            <EntityTypeMapping TypeName="PersonelDBModel1.Personel_tbl">
+              <MappingFragment StoreEntitySet="Personel_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sicil_No" ColumnName="Sicil_No" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="D_Id" ColumnName="D_Id" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Staff" ColumnName="Staff" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports_tbl">
+            <EntityTypeMapping TypeName="PersonelDBModel1.Reports_tbl">
+              <MappingFragment StoreEntitySet="Reports_tbl">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="A_Id" ColumnName="A_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PersonelDBModel1.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
